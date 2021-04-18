@@ -116,7 +116,7 @@ const Event = ({ event, onDelete }) => {
                 </MuiPickersUtilsProvider>
             </div>
                     
-            <button type='submit' value='Save Meetup' className='btn btn-block' />
+            <button type='submit' value='Save Meetup' className='btn btn-block' >Edit</button>
             <button type='button' className='btn' onClick={handleEdit} >Save Meetup</button>
           </form> 
         </>)}
