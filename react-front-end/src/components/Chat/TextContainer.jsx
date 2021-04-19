@@ -4,15 +4,15 @@ import onlineIcon from '../../icons/onlineIcon.png'
 
 const TextContainer = () => {
 
-  axios.get('http://localhost:8080/api/photographers', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(data => console.log('data from client:', data))
-
-  console.log('data', data)
+  // axios.get('http://localhost:8080/api/photographers', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   }
+  // })
+  //   .then(data => console.log('data from client:', data))
+  const data = [];
+  // console.log('data', data)
   return (
     <div className="textContainer">
     {
