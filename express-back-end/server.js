@@ -58,7 +58,14 @@ app.get('/maps', (req,res) => {
   });
 })
 
-
+// get meetups_photographers
+app.get('/api/photographers', (req, res) => {
+  const query = `SELECT name FROM photographers`
+    db.query(query).then((data) => {
+      res.send(data.rows)
+    }).catch((err) => {
+      });
+})
 
 // Cors configuration: blocks browser from restricting data
 const corsOptions = {

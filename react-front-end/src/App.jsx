@@ -14,8 +14,6 @@ import './styles/components/_button.scss';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import ArcticLandscape from './components/LandingPage/LandingPage';
 
-
-
 function App() {
 
   const [loading, setLoading ] = useState(true)
@@ -83,7 +81,7 @@ function App() {
           <>
           <BrowserRouter>
             <Navbar />
-            <ArcticLandscape className='focus' />
+            <ArcticLandscape />
             </BrowserRouter>
           </>
         )}
