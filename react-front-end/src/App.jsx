@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { authContext } from './AuthProvider';
 // import axios from 'axios';
+import io from 'socket.io-client'
 import Meetups from './components/Meetups/index.jsx';
 import Maps from './components/Maps/index.jsx';
 import Forecast from './components/Forecast/index.jsx';
@@ -13,6 +14,8 @@ import './styles/App.scss';
 import './styles/components/_button.scss';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import ArcticLandscape from './components/LandingPage/LandingPage';
+
+const ENDPOINT = 'http://localhost:5000'
 
 function App() {
 
@@ -58,6 +61,22 @@ function App() {
   //     });
   //   }) 
   // }
+  let socket = useRef(null)
+
+  useEffect(() => {
+    
+    socket.current = io(ENDPOINT);
+    
+    socket.current.emit('join', { name: 'name', room: 'room' }, () => {
+
+    });
+
+    return () => {
+      socket.current.emit('disconnection');
+
+      socket.current.off();
+    }
+  }, [])
 
     return (
       <>

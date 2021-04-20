@@ -34,7 +34,7 @@ const Chatbox = () => {
     
 
 
-    socket.current.emit('join', { name: user.name, room: meetup.name }, () => {
+    socket.current.emit('joinRoom', { username: user.name, room: meetup.name }, () => {
 
     });
 
@@ -47,16 +47,21 @@ const Chatbox = () => {
   }, [ ENDPOINT ])
 
   useEffect(() => {
+    socket.current.on('roomUsers', ({ room, users }) => {
+      outputRoomName(room);
+      outputUsers(users)
+    })
 
     socket.current.on('message', (message) => {
-      setMessages([...messages, message])
+      outputMessage(message)
     })
 
-    socket.current.on('roomData', ({ users }) => {
-      setUsers(users);
-    })
-  }, [ messages ])
 
+  }, [])
+
+  function outputMessage(message) {
+    
+  }
   const sendMessage = e => {
     e.preventDefault();
 

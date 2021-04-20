@@ -5,6 +5,9 @@ import Kpindex from './Kpindex';
 import MoonCycle from './MoonCycle';
 
 export default function Forecast() {
+
+  
+
   return (
     <div className="container">
       <Kpindex />

@@ -1,64 +1,69 @@
-const express = require('express')
+const path = require('path');
+const http = require('http');
+const express = require('express');
 const socketio = require('socket.io')
-const http = require('http')
-const cors = require('cors')
-
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./chat-users')
-
-const PORT = process.env.PORT || 5000
-
-const router = require('./chat-router')
+const formatMessage = require('./utils/messages')
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/users')
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-        credentials: true
-    }
-});
+const io = socketio(server);
 
-app.use(cors())
+// set static folder
+app.use(express.static(path.join('public')));
 
-io.on('connection', (socket) => {
-  socket.on('join', ({ name, room }, callback) => {
+const botName = 'Aurora Bot';
 
-    const { error, user } = addUser({ id: socket.id, name, room })
+// run when client connects
+io.on('connection', socket => {
+  socket.on('joinRoom', ({ username, room }) => {
 
-    if(error) return callback(error);
+    const user = userJoin(socket.id, username, room);
 
-    socket.emit('message', { user: 'Aurora Bot', text: `${user.name} welcome to the ${room} chat` })
-
-    socket.broadcast.to(user.room).emit('message', { user: 'Aurora Bot', text: `${user.name} has joined!` })
-    
     socket.join(user.room);
 
-    io.to(user.room).emit('roomData', { room: user.room , users: getUsersInRoom(user.room)})
+    // welcome current user
+    socket.emit('message', formatMessage(botName, 'Welcome to Aurora Chat!'));
 
-    callback();
-  })
+    // Broadcast when a user connects
+    socket.broadcast
+      .to(user.room)
+      .emit('message', formatMessage(botName, `${user.username} has joined the chat`));
 
-  socket.on('sendMessage', (message, callback) => {
-    const user = getUser(socket.id)
+    // send users and room info
+    io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
+    });
+  });
 
 
-    io.emit('message', { user: user.name, text: message })
 
-
-
-    callback();
-  })
+  
+  // listen for chatMessage
+  socket.on('chatMessage', (msg) => {
+    const user = getCurrentUser(socket.id)
+    io.to(user.room).emit('message', formatMessage(user.username, msg));
+  });
+  
+  // Runs when client disconnects
   socket.on('disconnection', () => {
-    const user = removeUser(socket.id)
+    const user = userLeave(socket.id);
 
     if(user){
-      io.emit('message', { user: 'Aurora Bot', text: `${user.name} has left the room`})
-      io.emit('roomData', { room: user.room, users: getUsersInRoom(user.room)})
+      io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
+
+          // send users and room info
+    io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
+    });
     }
-  })
-})
+  });
+  
+});
 
-app.use(router)
+const PORT = 3000 || process.env.PORT;
 
-server.listen(PORT, () => console.log(`Chat running on port ${PORT}`))
+server.listen(PORT, () => console.log(`Server Running on port ${PORT}`));
+
