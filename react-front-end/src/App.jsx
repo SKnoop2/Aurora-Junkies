@@ -47,7 +47,7 @@ function App() {
               {!auth && <Route exact path="/login" component={UserLogin}/>}
               {auth && <Route exact path="/login" component={UserInfo}/>}
             </Switch>
-          <Footer />
+          {/* <Footer /> */}
       </div>
         </BrowserRouter> 
         ) : (

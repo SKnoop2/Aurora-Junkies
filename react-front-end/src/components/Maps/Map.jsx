@@ -40,7 +40,7 @@ const Map = ({ markers }) => {
               <img alt="" className='popup-image' sizes="(max-height: 100px) 500px, 800px" src={spot.photo_url} />
           </Popup>
       </Marker>
-      ))}
+      ))} */}
       </MapContainer>
     </div>
   )

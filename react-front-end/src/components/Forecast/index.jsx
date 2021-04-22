@@ -6,7 +6,7 @@ import Info from './Info'
 
 export default function Forecast() {
   return (
-    <div className="cont">
+    <div >
       <div className="cont">
         <Kpindex />
         <Weather />
