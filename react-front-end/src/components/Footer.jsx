@@ -12,6 +12,7 @@ export default function Footer () {
     height: "60px",
     width: "100%",
     color: "#f8f9fa",
+    zIndex: 10000
   }
 
   var phantom = {
@@ -22,11 +23,11 @@ export default function Footer () {
   }
 
   return (
-    <footer className="footer">
+    <div className='footer'>
       <div style={phantom} />
       <div style={style}> 
       Dylan Rogers, Gavin Swan, & Samantha Knoop
       </div>
-    </footer>
+    </div>
   )
 }
