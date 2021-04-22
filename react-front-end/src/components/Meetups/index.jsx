@@ -36,7 +36,7 @@ export default function Meetups() {
       id: 3,
       location_id: 2,
       name: "Jasper",
-      date: '2021-04-15',
+      date: '2021-05-26',
       time:'01:20:00',
       lat: '53.118766',
       long: '-118.027272'
