@@ -30,7 +30,7 @@ function SafetySend () {
 
   const [text, setText] = useState({
       recipient: '',
-      textmessage: `From ${user.name}: \n I will be meeting with some new people on: \n ${context.meetup.date} at ${context.meetup.time} \n to take photos of northern lights. I expect to return home around 1am. I am sending this to you as a safety precaution.`
+      textmessage: `From ${user.name}: \n I will be meeting with some new people on: \n April 28 at 12am \n to take photos of northern lights. I expect to return home around 2:30am. I am sending this to you as a safety precaution.`
       // textmessage: `From ${user.name}: \n I will be meeting with ${attendees} (some new people) on: \n ${context.meetup.date} at ${context.meetup.time} \n to take photos of northern lights. I expect to return home around 1am. I am sending this to you as a safety precaution.`
   });
 
