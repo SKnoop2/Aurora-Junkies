@@ -26,8 +26,8 @@ export default function Form({ setPhotoSpots }) {
     province: "Alberta",
     latitude: "51.041735628202574",
     longitude: "-114.0800948826548",
-    photo_url: "",
-    photo_credit: ""
+    photo_url: "https://www.thoughtco.com/thmb/lvnO6LtViDRSQ1AXY4B6LUUhSfk=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/166370483-56cb36da5f9b5879cc54103c-5c54ad6b46e0fb00013a2205.jpg",
+    photo_credit: "Betty Boop"
     // location_name: "",
     // province: "",
     // latitude: "",

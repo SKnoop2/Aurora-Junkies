@@ -8,7 +8,7 @@ const Attendee = ({ attendee }) => {
   
   return (
     <div>
-      <button className='btn' style={{ backgroundColor: 'rgb(55, 139, 55)' }}><Link to={profileLink} style={{ textDecoration: 'none', color: 'white' }}>{attendee.name}</Link></button>
+      <button className='btn' style={{ backgroundColor: 'rgb(55, 139, 55)', width: '100px' }}><Link to={profileLink} style={{ textDecoration: 'none', color: 'white' }}>{attendee.name}</Link></button>
       {/* <button>{attendee.name}</button> */}
     </div>
   )
