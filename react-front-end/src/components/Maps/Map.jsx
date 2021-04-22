@@ -27,7 +27,7 @@ const Map = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {photoSpots.length && photoSpots.map((spot) => (
+        {/* {photoSpots.length && photoSpots.map((spot) => (
         <Marker
           key={spot.id}
           position={[
@@ -42,7 +42,7 @@ const Map = () => {
               <img alt="" className='popup-image' sizes="(max-height: 100px) 500px, 800px" src={spot.photo_url} />
           </Popup>
       </Marker>
-      ))}
+      ))} */}
       </MapContainer>
     </div>
   )
