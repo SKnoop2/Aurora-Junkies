@@ -14,7 +14,7 @@ const Navbar = () => {
     const profileLink = `/profile/${user.id}`
     return(
         <nav className="NavbarItems">
-            <h1 className="navbar-logo">Aurora Junkies</h1>
+            <Link className='nav-links' to="/"><h1 className="navbar-logo">Aurora Junkies</h1></Link>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
